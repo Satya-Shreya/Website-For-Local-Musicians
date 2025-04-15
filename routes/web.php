@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Auth\MusicianAuthController;
 use App\Http\Controllers\Auth\UserAuthController;
-
+use App\Http\Controllers\UserController;
 // Home
 Route::get('/', fn() => view('home'))->name('home');
 
@@ -38,4 +38,9 @@ Route::middleware(['auth', 'role:musician'])->group(function () {
 // User Dashboard (requires auth + user role)
 Route::middleware(['auth', 'role:user'])->group(function () {
     Route::get('/user/dashboard', fn() => view('dashboard.user_dashboard'))->name('user.dashboard');
+});
+
+Route::middleware(['auth', 'role:user'])->group(function () {
+    Route::get('/musicians', [UserController::class, 'showAllMusicians'])->name('user.musicians');
+    Route::post('/book-event/{showId}', [UserController::class, 'bookEvent'])->name('user.bookEvent');
 });

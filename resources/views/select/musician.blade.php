@@ -12,6 +12,7 @@
     </style>
 </head>
 <body>
+    <h1>IndiEch</h1>
     <h1>Welcome to Local Music Platform</h1>
 
     <div>
